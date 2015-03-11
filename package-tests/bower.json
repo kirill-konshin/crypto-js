@@ -1,0 +1,9 @@
+{
+  "name": "package-tests",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "requirejs": "*",
+    "crypto-js": "git://github.com/kirill-konshin/crypto-js#develop"
+  }
+}

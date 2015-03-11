@@ -4,11 +4,12 @@
   "main": "./build/crypto-js/lib/crypto-js.js",
   "ignore": [
     "**/*",
-    "!README.md",
+    "!build/**/*",
     "!docs/*",
-    "!build/crypto-js/**/*",
-    "!build/components/**/*",
-    "!build/rollups/**/*"
+    "!lib/**/*",
+    "!lib-compressed/**/*",
+    "!README.md",
+    "!src/**/*"
   ],
   "dependencies": {
   },

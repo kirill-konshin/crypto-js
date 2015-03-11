@@ -1,0 +1,13 @@
+{
+  "name": "package-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "start": "node test.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "git+https://github.com/kirill-konshin/crypto-js#develop"
+  }
+}

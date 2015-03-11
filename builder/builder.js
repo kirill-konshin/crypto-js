@@ -24,20 +24,19 @@
 
 		paths = {
 			src: __dirname + "/../src",
-			dist: __dirname + "/../build"
+			dist: __dirname + "/.."
 		},
 
 		packages = {
 			npm: {
-				archive: paths.dist + "/crypto-js-npm.tar.gz",
 
-				dest: paths.dist + "/crypto-js",
-				dest_lib: paths.dist + "/crypto-js",
-				dest_lib_min: null,
+				dest: paths.dist,
+				dest_lib: paths.dist + "/lib",
+				dest_lib_min: paths.dist + "/lib-compressed",
 
 				copy: {
-					"../package.json": "package.json",
-					"../README.md": "README.md"
+				//	"../package.json": "package.json",
+				//	"../README.md": "README.md"
 				},
 
 				toPath: function (module, req) {
@@ -49,29 +48,6 @@
 					}
 					else {
 						return module;
-					}
-				}
-			},
-			release: {
-				archive: paths.dist + "/crypto-js.tar.gz",
-
-				dest: paths.dist + "/crypto-js",
-				dest_lib: paths.dist + "/crypto-js/lib-uncompressed",
-				dest_lib_min: paths.dist + "/crypto-js/lib",
-
-				copy: {},
-
-				toPath: function (module, req) {
-					if (module === "index") {
-						return;
-					}
-					else if (req) {
-            return './';
-						//return module === "crypto-js" ? "./crypto-js/" : "./";
-					}
-					else {
-            return module;
-						//return module === "crypto-js" ? module : "crypto-js/" + module;
 					}
 				}
 			}
@@ -174,23 +150,6 @@
 					fsx.copy(paths.src + "/" + from, pkg.dest + "/" + to, function () {});
 				});
 
-				// Pack into archive
-				new targz()
-					.compress(pkg.dest, pkg.archive, function () {
-
-						//// Clear package destination directory
-						//fsx.rmrfSync(pkg.dest);
-						//fsx.rmrfSync(pkg.dest_lib);
-						//if (pkg.dest_lib_min) {
-						//	fsx.rmrfSync(pkg.dest_lib_min);
-						//}
-
-						// Mark package as built
-						pkg._built = true;
-
-						// Build next package
-						buildNextPackage();
-					});
 			});
 	}
 

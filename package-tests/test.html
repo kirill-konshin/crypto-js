@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript" src="bower_components/requirejs/require.js"></script>
+<script type="text/javascript">
+
+    require.config({
+        packages: [
+            {
+                name: 'crypto-js',
+                location: 'bower_components/crypto-js',
+                main: 'lib/index'
+            }
+        ]
+    });
+
+    require(["crypto-js", "crypto-js/lib/aes"], function (CryptoJS, AES) {
+
+        alert(CryptoJS.AES == AES); // true
+
+    });
+
+
+</script>
+</body>
+</html>

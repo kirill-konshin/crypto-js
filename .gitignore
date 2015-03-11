@@ -1,2 +1,4 @@
 node_modules
+package-tests/node_modules
+package-tests/bower_components
 .svn

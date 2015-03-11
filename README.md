@@ -18,8 +18,8 @@ npm install crypto-js
 Modular include:
 
 ```javascript
-var AES = require("crypto-js/aes");
-var SHA256 = require("crypto-js/sha256");
+var AES = require("crypto-js/lib/aes");
+var SHA256 = require("crypto-js/lib/sha256");
 ...
 console.log(SHA256("Message"));
 ```
@@ -51,13 +51,13 @@ require.config({
     packages: [
         {
             name: 'crypto-js',
-            location: 'path-to/bower_components/crypto-js/build/lib',
-            main: 'crypto-js'
+            location: 'path-to/bower_components/crypto-js',
+            main: 'lib/index'
         }
     ]
 });
 
-require(["crypto-js/aes", "crypto-js/sha256"], function (AES, SHA256) {
+require(["crypto-js/lib/aes", "crypto-js/lib/sha256"], function (AES, SHA256) {
     console.log(SHA256("Message"));
 });
 ```
@@ -65,19 +65,27 @@ require(["crypto-js/aes", "crypto-js/sha256"], function (AES, SHA256) {
 Including all libraries, for access to extra methods:
 
 ```javascript
-// Above-mentioned will work or use this simple form
-require.config({
-    paths: {
-        'require-js': 'path-to/bower_components/crypto-js/build/lib/crypto-js'
-    }
-});
 
-require("crypto-js", function (CryptoJS) {
+require(["crypto-js"], function (CryptoJS) {
     console.log(CryptoJS.HmacSHA1("Message", "Key"));
 });
 ```
  
-You can also use `lib-uncompressed` instead of `lib`.
+You can also use `lib-compressed` instead of `lib`.
+
+### Usage without RequireJS
+
+You will have to manually add needed modules as if you were using original CryptoJS library:
+
+```html
+<script type="text/javascript" src="path-to-scripts/crypto-js/build/rollups/aes.js"></script>
+<script type="text/javascript" src="path-to-scripts/crypto-js/build/rollups/sha256.js"></script>
+<script type="text/javascript" src="path-to-scripts/crypto-js/build/components/mode-ecb.js"></script>
+<script type="text/javascript">
+    var encrypted = CryptoJS.AES(...);
+    var encrypted = CryptoJS.SHA256(...);
+</script>
+```
 
 ## API
  
@@ -99,7 +107,7 @@ See: https://code.google.com/p/crypto-js
     npm run build
     ```
     
-4. Check `build/crypto-js` folder
+4. Check `lib` and `lib-compressed` folders
 
 ### List of modules
 
