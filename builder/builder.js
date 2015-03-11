@@ -66,10 +66,12 @@
 						return;
 					}
 					else if (req) {
-						return module === "crypto-js" ? "./crypto-js/" : "./";
+            return './';
+						//return module === "crypto-js" ? "./crypto-js/" : "./";
 					}
 					else {
-						return module === "crypto-js" ? module : "crypto-js/" + module;
+            return module;
+						//return module === "crypto-js" ? module : "crypto-js/" + module;
 					}
 				}
 			}
@@ -175,12 +177,13 @@
 				// Pack into archive
 				new targz()
 					.compress(pkg.dest, pkg.archive, function () {
-						// Clear package destination directory
-						fsx.rmrfSync(pkg.dest);
-						fsx.rmrfSync(pkg.dest_lib);
-						if (pkg.dest_lib_min) {
-							fsx.rmrfSync(pkg.dest_lib_min);
-						}
+
+						//// Clear package destination directory
+						//fsx.rmrfSync(pkg.dest);
+						//fsx.rmrfSync(pkg.dest_lib);
+						//if (pkg.dest_lib_min) {
+						//	fsx.rmrfSync(pkg.dest_lib_min);
+						//}
 
 						// Mark package as built
 						pkg._built = true;
